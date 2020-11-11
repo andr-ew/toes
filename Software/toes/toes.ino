@@ -3,9 +3,7 @@
 #include "config.h"
 
 // MIDI 
-MIDI_CREATE_INSTANCE(HardwareSerial, Serial1, MIDI);
-
-int cc_mapped = 0;              // reading mapped to 0-127              
+MIDI_CREATE_INSTANCE(HardwareSerial, Serial1, MIDI);     
 
 // debouncing
 Bounce sw1 = Bounce(2, 5); // debounce pin 2, 5ms debounce time
@@ -31,36 +29,36 @@ void loop() {
 
   // switch MIDI messages
   if (sw1.fallingEdge()) {
-    usbMIDI.sendNoteOn(note1, 99, midi_out_channel);  
-    MIDI.sendNoteOn(note1, 99, midi_out_channel);
+    usbMIDI.sendControlChange(cc1, 127, midi_out_channel);
+    MIDI.sendControlChange(cc1, 127, midi_out_channel);
   }
   if (sw1.risingEdge()) {
-    usbMIDI.sendNoteOff(note1, 0, midi_out_channel);
-    MIDI.sendNoteOff(note1, 0, midi_out_channel); 
+    usbMIDI.sendControlChange(cc1, 0, midi_out_channel);
+    MIDI.sendControlChange(cc1, 0, midi_out_channel);
   }
   if (sw2.fallingEdge()) {
-    usbMIDI.sendNoteOn(note2, 99, midi_out_channel);  
-    MIDI.sendNoteOn(note2, 99, midi_out_channel);
+    usbMIDI.sendControlChange(cc2,127, midi_out_channel);
+    MIDI.sendControlChange(cc2,127, midi_out_channel);
   }
   if (sw2.risingEdge()) {
-    usbMIDI.sendNoteOff(note2, 0, midi_out_channel);
-    MIDI.sendNoteOff(note2, 0, midi_out_channel); 
+    usbMIDI.sendControlChange(cc2, 0, midi_out_channel);
+    MIDI.sendControlChange(cc2, 0, midi_out_channel);
   }
   if (sw3.fallingEdge()) {
-    usbMIDI.sendNoteOn(note3, 99, midi_out_channel);  
-    MIDI.sendNoteOn(note3, 99, midi_out_channel);
+    usbMIDI.sendControlChange(cc3,127, midi_out_channel);
+    MIDI.sendControlChange(cc3,127, midi_out_channel);
   }
   if (sw3.risingEdge()) {
-    usbMIDI.sendNoteOff(note3, 0, midi_out_channel);
-    MIDI.sendNoteOff(note3, 0, midi_out_channel); 
+    usbMIDI.sendControlChange(cc3, 0, midi_out_channel);
+    MIDI.sendControlChange(cc3, 0, midi_out_channel);
   }
   if (sw4.fallingEdge()) {
-    usbMIDI.sendNoteOn(note4, 99, midi_out_channel);  
-    MIDI.sendNoteOn(note4, 99, midi_out_channel);
+    usbMIDI.sendControlChange(cc4,127, midi_out_channel);
+    MIDI.sendControlChange(cc4,127, midi_out_channel);
   }
   if (sw4.risingEdge()) {
-    usbMIDI.sendNoteOff(note4, 0, midi_out_channel);
-    MIDI.sendNoteOff(note4, 0, midi_out_channel); 
+    usbMIDI.sendControlChange(cc4, 0, midi_out_channel);
+    MIDI.sendControlChange(cc4, 0, midi_out_channel);
   }
 
   while (usbMIDI.read()) {
